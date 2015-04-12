@@ -1,0 +1,43 @@
+{
+  "name": "imaginary",
+  "description": "Minimalist CLI and programmatic stream-based interface for imaginary HTTP service",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": "h2non/node-imaginary",
+  "author": "Tomas Aparicio",
+  "main": "./lib",
+  "keywords": [
+    "image",
+    "convesion",
+    "processing",
+    "resize",
+    "vips",
+    "imagemagick",
+    "resize",
+    "convert",
+    "resolution",
+    "images"
+  ],
+  "directories": {
+    "lib": "./lib"
+  },
+  "bin": {
+    "imaginary": "./bin/imaginary"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "request": "^2.51.0",
+    "commander": "^2.6.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "lodash": "^2.4.1",
+    "mocha": "^1.21.3",
+    "nock": "^0.48.0"
+  }
+}

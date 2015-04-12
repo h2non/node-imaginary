@@ -1,0 +1,90 @@
+#!/usr/bin/env node
+
+var fs = require('fs')
+var path = require('path')
+var program = require('commander')
+var imaginary = require('../')
+
+program
+  .version(imaginary.VERSION)
+
+program
+  .command('crop [url]')
+  .description('Crop any image to a given square thumbnail in pixels')
+  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
+  .option('-r, --resolution [resolution]', 'New image resolution', '300x300')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('crop'))
+
+program
+  .command('width [imageUrl]')
+  .description('Resize any image to a given width in pixels')
+  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
+  .option('-r, --resolution [resolution]', 'New image resolution', '300')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('width'))
+
+program
+  .command('height [imageUrl]')
+  .description('Resize the image to the given height in pixels')
+  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
+  .option('-r, --resolution [resolution]', 'New image resolution', '300')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('height'))
+
+program
+  .command('resizei [imageUrl]')
+  .description('The image will be resized to fit the given resolution box (but not cropped). White will be added for the padding, if needed')
+  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
+  .option('-r, --resolution [resolution]', 'New image resolution', '300x200')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('resizeInBox'))
+
+program
+  .command('resizenp [imageUrl]')
+  .description('The image will be resized to fit the given resolution box (but not cropped). No padding will be added here')
+  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
+  .option('-r, --resolution [resolution]', 'New image resolution', '300x200')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('resizeNP'))
+
+program
+  .command('cdn [imageUrl]')
+  .description('Cache any image in our worldwide CDN, without any modification of the image')
+  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('cdn'))
+
+program.on('--help', function () {
+  console.log('  Examples:')
+  console.log('')
+  console.log('    $ imaginary crop -r 200x200 http://server.net/image.jpg')
+  console.log('    $ imaginary width -r 300 http://server.net/image.jpg')
+  console.log('    $ imaginary height -r 300 http://server.net/image.jpg')
+  console.log('    $ imaginary resizenp -r 300x200 http://server.net/image.jpg')
+  console.log('    $ imaginary cdn http://server.net/image.jpg')
+  console.log('    $ imaginary crop --id scvy0 http://server.net/image.jpg')
+  console.log('    $ imaginary crop --output test.jpg http://server.net/image.jpg')
+  console.log('')
+})
+
+program.parse(process.argv)
+
+function command(action) {
+  return function (url, flags) {
+    var resolution = flags.resolution
+    var output = flags.output || path.basename(url)
+
+    if (flags.id) imaginary.clientId = flags.id
+
+    imaginary(url)[action](resolution)
+      .on('error', exitWithError)
+      .pipe(fs.createWriteStream(output))
+  }
+
+}
+
+function exitWithError(err) {
+  console.error('Cannot convert the image:', err.message || err)
+  process.exit(1)
+}
