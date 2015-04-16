@@ -54,8 +54,6 @@ program.on('--help', function () {
   console.log('    $ imaginary width -r 300 http://server.net/image.jpg')
   console.log('    $ imaginary height -r 300 http://server.net/image.jpg')
   console.log('    $ imaginary resizenp -r 300x200 http://server.net/image.jpg')
-  console.log('    $ imaginary cdn http://server.net/image.jpg')
-  console.log('    $ imaginary crop --id scvy0 http://server.net/image.jpg')
   console.log('    $ imaginary crop --output test.jpg http://server.net/image.jpg')
   console.log('')
 })

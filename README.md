@@ -29,8 +29,6 @@ Commands:
   width [options] [imageUrl]     Resize any image to a given width in pixels
   height [options] [imageUrl]    Resize the image to the given height in pixels
   resizei [options] [imageUrl]   The image will be resized to fit the given resolution box (but not cropped). White will be added for the padding, if needed
-  resizenp [options] [imageUrl]  The image will be resized to fit the given resolution box (but not cropped). No padding will be added here
-  cdn [options] [imageUrl]       Cache any image in our worldwide CDN, without any modification of the image
 
 Options:
 
@@ -43,70 +41,55 @@ Examples:
   $ imaginary width -r 300 http://server.net/image.jpg
   $ imaginary height -r 300 http://server.net/image.jpg
   $ imaginary resizenp -r 300x200 http://server.net/image.jpg
-  $ imaginary cdn http://server.net/image.jpg
-  $ imaginary crop --id scvy0 http://server.net/image.jpg
   $ imaginary crop --output test.jpg http://server.net/image.jpg
 ````
 
 ## API
 
-### clouimage(imageUrl)
+### imaginary(image, [serverUrl])
 
 Constructor of the imaginary client
 
+Reading the image from disk:
 ```js
 var fs = require('fs')
 var imaginary = require('imaginary')
+var serverUrl = 'http://imaginary.company.net'
 
-var imageUrl = 'http://bit.ly/1Cqb78Z'
-
-imaginary(imageUrl)
-  .crop('200x200')
+imaginary('image.jpg', serverUrl)
+  .crop({ widht: 200 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
   })
-  .pipe(fs.createWriteStream('new-image.jpg'))
+  .pipe(fs.createWriteStream('out.jpg'))
 ```
 
-Use a custom imaginary's customer ID:
-
+Reading the image from remote:
 ```js
-imaginary.clientID = 'svrd10'
-
 imaginary(imageUrl)
-  .crop('100x100')
+  .crop({ width: 100 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
   })
-  .pipe(fs.createWriteStream('new-image.jpg'))
+  .pipe(fs.createWriteStream('test.jpg'))
 ```
 
-#### imaginary#crop(resolution)
+#### imaginary#crop(params)
 
 Crop any image to a given square thumbnail in pixels. Example: `300x300`
 
-#### imaginary#width(resolution)
+#### imaginary#width(params)
 
 Resize any image to a given width in pixels. Example: '200'
 
-#### imaginary#height(resolution)
+#### imaginary#height(params)
 
 Resize any image to a given height in pixels. Example: '200'
 
-#### imaginary#resizeInBox(resolution)
+#### imaginary#resizeInBox(params)
 
 The image will be resized to fit the given resolution box (but not cropped). White will be added for the padding, if needed.
 Example: `300x200`
-
-#### imaginary#resizeNP(resolution)
-
-The image will be resized to fit the given resolution box (but not cropped). No padding will be added here.
-Example: `300x200`
-
-#### imaginary#cdn()
-
-Cache any image in our worldwide CDN, without any modification of the image.
-This will increase the response time in future requests
 
 ### imaginary.VERSION
 
