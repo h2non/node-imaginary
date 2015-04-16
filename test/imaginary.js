@@ -1,5 +1,6 @@
 var Imaginary = require('../')
 var expect = require('chai').expect
+var nock = require('nock')
 var fs = require('fs')
 
 suite('Imaginary', function () {
@@ -11,8 +12,18 @@ suite('Imaginary', function () {
     expect(Imaginary.VERSION).to.be.a('string')
   })
 
+  nock('http://server.com')
+    .get('/image.jpg')
+    .replyWithFile(200, __dirname + '/fixtures/test.jpg')
+
+  nock('http://localhost:8088')
+    .persist()
+    .filteringPath(function (path) { return '/' })
+    .post('/')
+    .replyWithFile(200, __dirname + '/fixtures/test.jpg')
+
   test('remove image', function (done) {
-    Imaginary('http://bit.ly/1Cqb78Z')
+    Imaginary('http://server.com/image.jpg')
       .rotate({ rotate: 90 })
       .on('response', function (res) {
         var length = 0
@@ -24,7 +35,6 @@ suite('Imaginary', function () {
           done()
         })
       })
-      //.pipe(fs.createWriteStream('out.jpg'))
   })
 
   test('#crop', function (done) {
@@ -75,6 +85,21 @@ suite('Imaginary', function () {
   test('#rotate', function (done) {
     Imaginary('./test/fixtures/test.jpg')
       .rotate({ rotate: 90 })
+      .on('response', function (res) {
+        var length = 0
+        res.on('data', function (data) {
+          length += data.length
+        })
+        res.on('end', function () {
+          expect(length > 3000).to.be.true
+          done()
+        })
+      })
+  })
+
+  test('#extract', function (done) {
+    Imaginary('./test/fixtures/test.jpg')
+      .extract({ top: 100, left: 100, width: 400 })
       .on('response', function (res) {
         var length = 0
         res.on('data', function (data) {
