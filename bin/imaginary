@@ -17,14 +17,6 @@ program
   .action(command('crop'))
 
 program
-  .command('width [imageUrl]')
-  .description('Resize any image to a given width in pixels')
-  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
-  .option('-r, --resolution [resolution]', 'New image resolution', '300')
-  .option('-o, --output [path]', 'Output image file path')
-  .action(command('width'))
-
-program
   .command('height [imageUrl]')
   .description('Resize the image to the given height in pixels')
   .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.clientId)
