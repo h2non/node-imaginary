@@ -1,6 +1,6 @@
 # node-imaginary [![Build Status](https://api.travis-ci.org/h2non/node-imaginary.svg?branch=master)][travis] [![Dependency Status](https://gemnasium.com/h2non/node-imaginary.svg)][gemnasium] [![NPM version](https://badge.fury.io/js/imaginary.svg)][npm]
 
-Minimalist node.js/io.js CLI & programmatic stream-based interface for [imaginary](https://github.com/h2non/imaginary) HTTP service
+Minimalist node.js/io.js CLI & programmatic stream-based interface for [imaginary](https://github.com/h2non/imaginary) HTTP API
 
 ## Installation
 
@@ -65,7 +65,7 @@ imaginary('image.jpg', serverUrl)
 
 Reading the image from remote:
 ```js
-imaginary(imageUrl)
+imaginary('http://server.com/image.jpg')
   .crop({ width: 100 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
