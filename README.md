@@ -49,7 +49,7 @@ Examples:
 
 Constructor of the imaginary client
 
-Reading the image from disk:
+Reading image from disk:
 ```js
 var fs = require('fs')
 var imaginary = require('imaginary')
@@ -63,7 +63,7 @@ imaginary('image.jpg', serverUrl)
   .pipe(fs.createWriteStream('out.jpg'))
 ```
 
-Reading the image from remote:
+Reading image from remote:
 ```js
 imaginary('http://server.com/image.jpg')
   .crop({ width: 100 })
@@ -73,22 +73,43 @@ imaginary('http://server.com/image.jpg')
   .pipe(fs.createWriteStream('test.jpg'))
 ```
 
+Reading image from disk:
+```js
+imaginary(fs.readFileStream('image.jpg'))
+  .crop({ width: 100 })
+  .on('error', function (err) {
+    console.error('Cannot resize the image:', err)
+  })
+  .pipe(fs.createWriteStream('test.jpg'))
+```
+
 #### imaginary#crop(params)
 
-Crop any image to a given square thumbnail in pixels. Example: `300x300`
+Crop an image to a given square thumbnail in pixels.
 
-#### imaginary#width(params)
+#### imaginary#resize(params)
 
-Resize any image to a given width in pixels. Example: `200`
+Resize an image. Example: `200`
 
-#### imaginary#height(params)
+#### imaginary#expand(params)
 
-Resize any image to a given height in pixels. Example: `200`
+Resize any image to a given height in pixels.
 
-#### imaginary#resizeInBox(params)
+#### imaginary#zoom(params)
 
-The image will be resized to fit the given resolution box (but not cropped). White will be added for the padding, if needed.
-Example: `300x200`
+Zoom an image by the given height in pixels.
+
+#### imaginary#rotate(params)
+
+Rotate an image to a given degrees (must be multiple of 90)
+
+#### imaginary#flip(params)
+
+Flip an image
+
+#### imaginary#flop(params)
+
+Flop an image
 
 ### imaginary.VERSION
 
