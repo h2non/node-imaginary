@@ -40,7 +40,6 @@ Examples:
   $ imaginary crop -r 200x200 http://server.net/image.jpg
   $ imaginary width -r 300 http://server.net/image.jpg
   $ imaginary height -r 300 http://server.net/image.jpg
-  $ imaginary resizenp -r 300x200 http://server.net/image.jpg
   $ imaginary crop --output test.jpg http://server.net/image.jpg
 ````
 
@@ -80,11 +79,11 @@ Crop any image to a given square thumbnail in pixels. Example: `300x300`
 
 #### imaginary#width(params)
 
-Resize any image to a given width in pixels. Example: '200'
+Resize any image to a given width in pixels. Example: `200`
 
 #### imaginary#height(params)
 
-Resize any image to a given height in pixels. Example: '200'
+Resize any image to a given height in pixels. Example: `200`
 
 #### imaginary#resizeInBox(params)
 
