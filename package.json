@@ -16,7 +16,12 @@
     "resize",
     "convert",
     "resolution",
-    "images"
+    "images",
+    "crop",
+    "rotate",
+    "flip",
+    "flip",
+    "libvips"
   ],
   "directories": {
     "lib": "./lib"
