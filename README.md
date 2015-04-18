@@ -23,12 +23,17 @@ $ imaginary --help
 ```bash
 Usage: imaginary [options] [command]
 
+
 Commands:
 
-  crop [options] [url]           Crop any image to a given square thumbnail in pixels
-  width [options] [imageUrl]     Resize any image to a given width in pixels
-  height [options] [imageUrl]    Resize the image to the given height in pixels
-  resizei [options] [imageUrl]   The image will be resized to fit the given resolution box (but not cropped). White will be added for the padding, if needed
+  crop [options] [image]       Crop any image to a given square thumbnail in pixels
+  resize [options] [image]     Resize the image to the given width or height in pixels
+  embed [options] [image]      Embed the image to the given width or height in pixels
+  rotate [options] [image]     Embed the image to the given width or height in pixels
+  flip [options] [image]       Embed the image to the given width or height in pixels
+  flop [options] [image]       Embed the image to the given width or height in pixels
+  zoom [options] [image]       Zoom the image to the given width or height in pixels
+  watermark [options] [image]  Add a text watermark in the imaeg
 
 Options:
 
@@ -37,10 +42,10 @@ Options:
 
 Examples:
 
-  $ imaginary crop -r 200x200 http://server.net/image.jpg
-  $ imaginary width -r 300 http://server.net/image.jpg
-  $ imaginary height -r 300 http://server.net/image.jpg
-  $ imaginary crop --output test.jpg http://server.net/image.jpg
+  $ imaginary crop -w 200 -o out.jpg image.jpg
+  $ imaginary resize -w 300 -o out.jpg http://server.net/image.jpg
+  $ imaginary zoom -f 2 -w 300 -o out.jpg http://server.net/image.jpg
+  $ imaginary watermark --text "copyright" -o out.jpg http://server.net/image.jpg
 ````
 
 ## API
@@ -82,6 +87,18 @@ imaginary(fs.readFileStream('image.jpg'))
   })
   .pipe(fs.createWriteStream('test.jpg'))
 ```
+
+#### imaginary#key(key)
+
+Define the API key required by the required
+
+#### imaginary#params(params)
+
+Define resuable params to image
+
+#### imaginary#image(image)
+
+Pass the image path, image URL or `ReadableStream` to the image file
 
 #### imaginary#crop(params)
 

@@ -31,8 +31,9 @@
     "test": "make test"
   },
   "dependencies": {
-    "request": "^2.51.0",
-    "commander": "^2.6.0"
+    "commander": "^2.6.0",
+    "merge": "^1.2.0",
+    "request": "^2.51.0"
   },
   "devDependencies": {
     "chai": "^1.9.1",

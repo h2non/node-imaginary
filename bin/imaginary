@@ -14,24 +14,113 @@ program
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
   .option('-o, --output [path]', 'Output image file path')
   .action(command('crop'))
 
 program
-  .command('height [imageUrl]')
-  .description('Resize the image to the given height in pixels')
-  .option('-i, --id [id]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
-  .option('-r, --resolution [resolution]', 'New image resolution', '300')
+  .command('resize [image]')
+  .description('Resize the image to the given width or height in pixels')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
   .option('-o, --output [path]', 'Output image file path')
-  .action(command('height'))
+  .action(command('resize'))
+
+program
+  .command('embed [image]')
+  .description('Embed the image to the given width or height in pixels')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('embed'))
+
+program
+  .command('rotate [image]')
+  .description('Embed the image to the given width or height in pixels')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-r, --rotate [angle]', 'Image rotation angle. Must be multiple of 90. Example: 180')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('rotate'))
+
+program
+  .command('flip [image]')
+  .description('Embed the image to the given width or height in pixels')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('flip'))
+
+program
+  .command('flop [image]')
+  .description('Embed the image to the given width or height in pixels')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('flop'))
+
+program
+  .command('zoom [image]')
+  .description('Zoom the image to the given width or height in pixels')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-f, --factor [level]', 'Zoom factor level between 1-5', 1)
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('zoom'))
+
+program
+  .command('watermark [image]')
+  .description('Add a text watermark in the imaeg')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-x, --text [text]', 'Watermark text content. Example: copyright (c)')
+  .option('-m, --margin [num]', 'Text margin in pixels. Example: 100')
+  .option('-d, --dip [num]', 'DPI value for watermark. Example: 150')
+  .option('-y, --textwidth [num]', 'Text width for watermark. Example: 200')
+  .option('-s, --opacity [num]', 'Opacity level for watermark text. Example: 0.2')
+  .option('-r, --noreplicate', 'Disable text replication in watermark')
+  .option('-f, --font [value]', 'Watermark text font type and format. Example: sans bold 12')
+  .option('-k, --color [value]', 'Watermark text RGB decimal base color. Example: 255,200,150')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('watermark'))
 
 program.on('--help', function () {
   console.log('  Examples:')
   console.log('')
-  console.log('    $ imaginary crop -r 200x200 http://server.net/image.jpg')
-  console.log('    $ imaginary width -r 300 http://server.net/image.jpg')
-  console.log('    $ imaginary height -r 300 http://server.net/image.jpg')
-  console.log('    $ imaginary crop --output test.jpg http://server.net/image.jpg')
+  console.log('    $ imaginary crop -w 200 -o out.jpg image.jpg')
+  console.log('    $ imaginary resize -w 300 -o out.jpg http://server.net/image.jpg')
+  console.log('    $ imaginary zoom -f 2 -w 300 -o out.jpg http://server.net/image.jpg')
+  console.log('    $ imaginary watermark --text "copyright" -o out.jpg http://server.net/image.jpg')
   console.log('')
 })
 
@@ -40,12 +129,22 @@ program.parse(process.argv)
 function command(action) {
   return function (image, flags) {
     var output = flags.output || path.basename(image)
-    var opts = { width: flags.width, height: flags.height }
+    var opts = params(flags)
 
     imaginary(image, flags.server)[action](opts)
       .on('error', exitWithError)
       .pipe(fs.createWriteStream(output))
   }
+}
+
+function params(opts) {
+  var buf = {}
+  Object.keys(opts).forEach(function (key) {
+    if (key !== 'output' && key.length > 2) {
+      buf[key] = opts[key]
+    }
+  })
+  return buf
 }
 
 function exitWithError(err) {
