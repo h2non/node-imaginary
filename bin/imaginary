@@ -49,7 +49,7 @@ program
 
 program
   .command('rotate [image]')
-  .description('Embed the image to the given width or height in pixels')
+  .description('Rotate the image by degrees')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
@@ -63,7 +63,7 @@ program
 
 program
   .command('flip [image]')
-  .description('Embed the image to the given width or height in pixels')
+  .description('Flip an image')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
@@ -76,7 +76,7 @@ program
 
 program
   .command('flop [image]')
-  .description('Embed the image to the given width or height in pixels')
+  .description('Flop an image')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
@@ -103,7 +103,7 @@ program
 
 program
   .command('watermark [image]')
-  .description('Add a text watermark in the imaeg')
+  .description('Add a text watermark in the image')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')

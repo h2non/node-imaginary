@@ -32,11 +32,11 @@ Commands:
   crop [options] [image]       Crop any image to a given square thumbnail in pixels
   resize [options] [image]     Resize the image to the given width or height in pixels
   embed [options] [image]      Embed the image to the given width or height in pixels
-  rotate [options] [image]     Embed the image to the given width or height in pixels
-  flip [options] [image]       Embed the image to the given width or height in pixels
-  flop [options] [image]       Embed the image to the given width or height in pixels
+  rotate [options] [image]     Rotate the image by degrees
+  flip [options] [image]       Flip an image
+  flop [options] [image]       Flop an image
   zoom [options] [image]       Zoom the image to the given width or height in pixels
-  watermark [options] [image]  Add a text watermark in the imaeg
+  watermark [options] [image]  Add a text watermark in the image
 
 Options:
 
@@ -49,11 +49,11 @@ Examples:
   $ imaginary resize -w 300 -o out.jpg http://server.net/image.jpg
   $ imaginary zoom -f 2 -w 300 -o out.jpg http://server.net/image.jpg
   $ imaginary watermark --text "copyright" -o out.jpg http://server.net/image.jpg
-````
+```
 
 ## API
 
-### imaginary(image, [serverUrl])
+### imaginary(image, [imaginaryUrl])
 
 Constructor of the imaginary client
 
