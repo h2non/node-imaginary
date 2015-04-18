@@ -12,6 +12,7 @@ program
   .command('crop [image]')
   .description('Crop any image to a given square thumbnail in pixels')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -24,6 +25,7 @@ program
   .command('resize [image]')
   .description('Resize the image to the given width or height in pixels')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -35,6 +37,7 @@ program
 program
   .command('embed [image]')
   .description('Embed the image to the given width or height in pixels')
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -48,6 +51,7 @@ program
   .command('rotate [image]')
   .description('Embed the image to the given width or height in pixels')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -61,6 +65,7 @@ program
   .command('flip [image]')
   .description('Embed the image to the given width or height in pixels')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -73,6 +78,7 @@ program
   .command('flop [image]')
   .description('Embed the image to the given width or height in pixels')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -85,6 +91,7 @@ program
   .command('zoom [image]')
   .description('Zoom the image to the given width or height in pixels')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -98,6 +105,7 @@ program
   .command('watermark [image]')
   .description('Add a text watermark in the imaeg')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -110,7 +118,7 @@ program
   .option('-s, --opacity [num]', 'Opacity level for watermark text. Example: 0.2')
   .option('-r, --noreplicate', 'Disable text replication in watermark')
   .option('-f, --font [value]', 'Watermark text font type and format. Example: sans bold 12')
-  .option('-k, --color [value]', 'Watermark text RGB decimal base color. Example: 255,200,150')
+  .option('-m, --color [value]', 'Watermark text RGB decimal base color. Example: 255,200,150')
   .option('-o, --output [path]', 'Output image file path')
   .action(command('watermark'))
 
@@ -139,12 +147,22 @@ function command(action) {
 
 function params(opts) {
   var buf = {}
+
   Object.keys(opts).forEach(function (key) {
-    if (key !== 'output' && key.length > 2) {
+    if (omit(key)) {
       buf[key] = opts[key]
     }
   })
+
   return buf
+}
+
+function omit(key) {
+  var omitFields = ['output', 'server', 'options', 'parent', 'commands']
+
+  return !~omitFields.indexOf(key)
+    && key.charAt(0) !== '_'
+    && key.length > 2
 }
 
 function exitWithError(err) {
