@@ -1,6 +1,7 @@
 # node-imaginary [![Build Status](https://api.travis-ci.org/h2non/node-imaginary.svg?branch=master)][travis] [![Dependency Status](https://gemnasium.com/h2non/node-imaginary.svg)][gemnasium] [![NPM version](https://badge.fury.io/js/imaginary.svg)][npm]
 
-Minimalist node.js/io.js CLI & programmatic stream-based interface for [imaginary](https://github.com/h2non/imaginary) HTTP service.
+Minimalist node.js/io.js CLI & programmatic stream-based interface for [imaginary](https://github.com/h2non/imaginary).
+Support multiple image operations such as resize, crop, zoom, watermark, rotate...
 
 Supports both local and remote URL based image processing.
 For getting started, take a look to the [command-line usage](#cli) and programmatic [API](#api)
@@ -26,17 +27,18 @@ $ imaginary --help
 ```bash
 Usage: imaginary [options] [command]
 
+  Commands:
 
-Commands:
-
-  crop [options] [image]       Crop any image to a given square thumbnail in pixels
-  resize [options] [image]     Resize the image to the given width or height in pixels
-  embed [options] [image]      Embed the image to the given width or height in pixels
-  rotate [options] [image]     Rotate the image by degrees
-  flip [options] [image]       Flip an image
-  flop [options] [image]       Flop an image
-  zoom [options] [image]       Zoom the image to the given width or height in pixels
-  watermark [options] [image]  Add a text watermark in the image
+    crop [options] [image]       Crop any image to a given square thumbnail in pixels
+    resize [options] [image]     Resize the image to the given width or height in pixels
+    embed [options] [image]      Embed the image to the given width or height in pixels
+    extract [options] [image]    Extract area from an image by top/left and width/height
+    rotate [options] [image]     Rotate the image by degrees
+    flip [options] [image]       Flip an image
+    flop [options] [image]       Flop an image
+    zoom [options] [image]       Zoom the image to the given width or height in pixels
+    watermark [options] [image]  Add a text watermark in the image
+    info [options] [image]       Retrieve image information as JSON
 
 Options:
 

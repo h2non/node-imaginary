@@ -48,6 +48,21 @@ program
   .action(command('embed'))
 
 program
+  .command('extract [image]')
+  .description('Extract area from an image by top/left and width/height')
+  .option('-k, --key [code]', 'Optional imaginary server API key')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-t, --top [pixels]', 'Area top margin')
+  .option('-l, --left [pixels]', 'Area left margin')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('extract'))
+
+program
   .command('rotate [image]')
   .description('Rotate the image by degrees')
   .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
@@ -121,6 +136,14 @@ program
   .option('-m, --color [value]', 'Watermark text RGB decimal base color. Example: 255,200,150')
   .option('-o, --output [path]', 'Output image file path')
   .action(command('watermark'))
+
+program
+  .command('info [image]')
+  .description('Retrieve image information as JSON')
+  .option('-s, --server [url]', 'imaginary customer ID. Example: scvb0', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
+  .option('-o, --output [path]', 'Output image info file (JSON)')
+  .action(command('info'))
 
 program.on('--help', function () {
   console.log('  Examples:')
