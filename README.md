@@ -33,6 +33,7 @@ Commands:
   resize [options] [image]     Resize the image to the given width or height in pixels
   embed [options] [image]      Embed the image to the given width or height in pixels
   extract [options] [image]    Extract area from an image by top/left and width/height
+  enlarge [options] [image]    Enlarge the image to the given width and height in pixels
   rotate [options] [image]     Rotate the image by degrees
   flip [options] [image]       Flip an image
   flop [options] [image]       Flop an image
@@ -95,7 +96,7 @@ imaginary(fs.readFileStream('image.jpg'))
 
 ### Supported params
 
-Complete list of available params. Take a look to each specific method to see which params are supported.
+Complete list of available params. Take a look to each specific endpoint to see which params are supported.
 Image measures are always in pixels, unless otherwise indicated.
 
 - width       `int`   - Width of image area to extract/resize
@@ -112,11 +113,15 @@ Image measures are always in pixels, unless otherwise indicated.
 - dpi         `int`   - DPI value for watermark. Example: `150`
 - textwidth   `int`   - Text area width for watermark. Example: `200`
 - opacity     `float` - Opacity level for watermark text. Default: `0.2`
+- nocrop      `bool`  - Disable crop transformation enabled by default by some operations. Default: `false`
 - noreplicate `bool`  - Disable text replication in watermark. Default `false`
+- norotation  `bool`  - Disable auto rotation based on EXIF orientation. Default `false`
 - text        `string` - Watermark text content. Example: `copyright (c) 2189`
 - font        `string` - Watermark text font type and format. Example: `sans bold 12`
 - color       `string` - Watermark text RGB decimal base color. Example: `255,200,150`
 - type        `string` - Specify the image format to output. Possible values are: `jpeg`, `png` and `webp`
+
+Up-to-date supported params documentation [here](https://github.com/h2non/imaginary#params)
 
 #### imaginary#key(key)
 
@@ -137,6 +142,10 @@ Crop an image to a given square thumbnail in pixels.
 #### imaginary#resize(params)
 
 Resize an image by width, height or both
+
+#### imaginary#enlarge(params)
+
+Enlarge an image by width and/or height
 
 #### imaginary#extract(params)
 

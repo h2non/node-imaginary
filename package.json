@@ -21,7 +21,12 @@
     "rotate",
     "flip",
     "flip",
-    "libvips"
+    "libvips",
+    "convert",
+    "images",
+    "enlarge",
+    "crop",
+    "watermark"
   ],
   "directories": {
     "lib": "./lib"
