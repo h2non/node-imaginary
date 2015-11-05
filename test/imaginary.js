@@ -24,6 +24,7 @@ suite('Imaginary', function () {
 
   test('remove image', function (done) {
     Imaginary('http://server.com/image.jpg')
+      .server('http://localhost:8088')
       .rotate({ rotate: 90 })
       .on('response', function (res) {
         var length = 0
@@ -39,6 +40,7 @@ suite('Imaginary', function () {
 
   test('#crop', function (done) {
     Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
       .crop({ width: 400 })
       .on('response', function (res) {
         var length = 0
@@ -54,6 +56,7 @@ suite('Imaginary', function () {
 
   test('#resize', function (done) {
     Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
       .resize({ width: 300 })
       .on('response', function (res) {
         var length = 0
@@ -69,6 +72,7 @@ suite('Imaginary', function () {
 
   test('#thumbnail', function (done) {
     Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
       .thumbnail({ width: 300 })
       .on('response', function (res) {
         var length = 0
@@ -84,6 +88,7 @@ suite('Imaginary', function () {
 
   test('#rotate', function (done) {
     Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
       .rotate({ rotate: 90 })
       .on('response', function (res) {
         var length = 0
@@ -99,6 +104,7 @@ suite('Imaginary', function () {
 
   test('#extract', function (done) {
     Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
       .extract({ top: 100, left: 100, width: 400 })
       .on('response', function (res) {
         var length = 0
@@ -111,5 +117,4 @@ suite('Imaginary', function () {
         })
       })
   })
-
 })

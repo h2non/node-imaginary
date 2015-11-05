@@ -1,10 +1,10 @@
 # node-imaginary [![Build Status](https://api.travis-ci.org/h2non/node-imaginary.svg?branch=master)][travis] [![Dependency Status](https://gemnasium.com/h2non/node-imaginary.svg)][gemnasium] [![NPM version](https://badge.fury.io/js/imaginary.svg)][npm]
 
-Minimalist node.js/io.js CLI & programmatic stream-based interface for [imaginary](https://github.com/h2non/imaginary).
-Support multiple image operations such as resize, crop, zoom, watermark, rotate...
+Minimalist node.js/io.js CLI & programmatic stream capable interface for [imaginary](https://github.com/h2non/imaginary) server.
 
-Supports both local and remote URL based image processing.
-For getting started, take a look to the [command-line usage](#cli) and programmatic [API](#api)
+Supports multiple image operations such as resize, crop, zoom, watermark, rotate... and both local and remote URL based image source processing, and additionally provides a simple balancing feature to use multiple imaginary servers.
+
+To get started take a look to the [command-line usage](#cli) and programmatic [API](#api)
 
 ## Installation
 
@@ -66,7 +66,8 @@ var fs = require('fs')
 var imaginary = require('imaginary')
 var serverUrl = 'http://imaginary.company.net'
 
-imaginary('image.jpg', serverUrl)
+imaginary('image.jpg')
+  .server(serverUrl)
   .crop({ widht: 200 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
@@ -96,36 +97,22 @@ imaginary(fs.readFileStream('image.jpg'))
 
 ### Supported params
 
-Complete list of available params. Take a look to each specific endpoint to see which params are supported.
+See the full list of supported query params [here](https://github.com/h2non/imaginary#params).
+
+Take a look to each specific endpoint to see which specific params are supported or not.
 Image measures are always in pixels, unless otherwise indicated.
-
-- width       `int`   - Width of image area to extract/resize
-- height      `int`   - Height of image area to extract/resize
-- top         `int`   - Top edge of area to extract. Example: `100`
-- left        `int`   - Left edge of area to extract. Example: `100`
-- areawidth   `int`   - Height area to extract. Example: `300`
-- areaheight  `int`   - Width area to extract. Example: `300`
-- quality     `int`   - JPEG image quality between 1-100. Default `80`
-- compression `int`   - PNG compression level. Default: `6`
-- rotate      `int`   - Image rotation angle. Must be multiple of `90`. Example: `180`
-- factor      `int`   - Zoom factor level. Example: `2`
-- margin      `int`   - Text area margin for watermark. Example: `50`
-- dpi         `int`   - DPI value for watermark. Example: `150`
-- textwidth   `int`   - Text area width for watermark. Example: `200`
-- opacity     `float` - Opacity level for watermark text. Default: `0.2`
-- nocrop      `bool`  - Disable crop transformation enabled by default by some operations. Default: `false`
-- noreplicate `bool`  - Disable text replication in watermark. Default `false`
-- norotation  `bool`  - Disable auto rotation based on EXIF orientation. Default `false`
-- text        `string` - Watermark text content. Example: `copyright (c) 2189`
-- font        `string` - Watermark text font type and format. Example: `sans bold 12`
-- color       `string` - Watermark text RGB decimal base color. Example: `255,200,150`
-- type        `string` - Specify the image format to output. Possible values are: `jpeg`, `png` and `webp`
-
-Up-to-date supported params documentation [here](https://github.com/h2non/imaginary#params)
 
 #### imaginary#key(key)
 
 Define the API key required by the imaginary server (optional)
+
+#### imaginary#server(url)
+
+Define the imaginary server URL
+
+#### imaginary#balance(urls)
+
+Balance between a pool of imaginary server URLs
 
 #### imaginary#params(params)
 
@@ -134,6 +121,10 @@ Define resuable params to image
 #### imaginary#image(image)
 
 Pass the image path, image URL or `ReadableStream` to the image file
+
+#### imaginary#imageUrl(url)
+
+Pass the image URL to process
 
 #### imaginary#crop(params)
 
@@ -182,6 +173,14 @@ Thumbnail an image with a given width or height
 #### imaginary#info()
 
 Get the metadata info of the image as JSON
+
+#### imaginary#health()
+
+Retrieve server health status
+
+#### imaginary#versions()
+
+Retrieve imaginary, bimg and libvips versions
 
 ### imaginary.VERSION
 
