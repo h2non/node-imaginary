@@ -112,7 +112,7 @@ Define the imaginary server URL
 
 #### imaginary#balance(urls)
 
-Define resuable params to image
+Define a pool of imaginary servers to balance load across them.
 
 #### imaginary#image(image)
 
