@@ -43,7 +43,7 @@
   "dependencies": {
     "commander": "^2.6.0",
     "merge": "^1.2.0",
-    "request": "^2.65.1"
+    "request": "^2.65.0"
   },
   "devDependencies": {
     "chai": "^1.9.1",
