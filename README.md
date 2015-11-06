@@ -112,10 +112,6 @@ Define the imaginary server URL
 
 #### imaginary#balance(urls)
 
-Balance between a pool of imaginary server URLs
-
-#### imaginary#params(params)
-
 Define resuable params to image
 
 #### imaginary#image(image)
@@ -126,59 +122,63 @@ Pass the image path, image URL or `ReadableStream` to the image file
 
 Pass the image URL to process
 
-#### imaginary#crop(params)
+Balance between a pool of imaginary server URLs
+
+#### imaginary#params(params, [ callback ])
+
+#### imaginary#crop(params, [ callback ])
 
 Crop an image to a given square thumbnail in pixels.
 
-#### imaginary#resize(params)
+#### imaginary#resize(params, [ callback ])
 
 Resize an image by width, height or both
 
-#### imaginary#enlarge(params)
+#### imaginary#enlarge(params, [ callback ])
 
 Enlarge an image by width and/or height
 
-#### imaginary#extract(params)
+#### imaginary#extract(params, [ callback ])
 
 Extract image area by top/left and width/height pixels
 
-#### imaginary#expand(params)
+#### imaginary#expand(params, [ callback ])
 
 Resize any image to a given height in pixels.
 
-#### imaginary#zoom(params)
+#### imaginary#zoom(params, [ callback ])
 
 Zoom an image by the given height in pixels.
 
-#### imaginary#rotate(params)
+#### imaginary#rotate(params, [ callback ])
 
 Rotate an image to a given degrees (must be multiple of 90)
 
-#### imaginary#flip(params)
+#### imaginary#flip(params, [ callback ])
 
 Flip an image
 
-#### imaginary#flop(params)
+#### imaginary#flop(params, [ callback ])
 
 Flop an image
 
-#### imaginary#watermark(params)
+#### imaginary#watermark(params, [ callback ])
 
 Add a watermark to an image
 
-#### imaginary#thumbnail(params)
+#### imaginary#thumbnail(params, [ callback ])
 
 Thumbnail an image with a given width or height
 
-#### imaginary#info()
+#### imaginary#info([ callback ])
 
 Get the metadata info of the image as JSON
 
-#### imaginary#health()
+#### imaginary#health([ callback ])
 
 Retrieve server health status
 
-#### imaginary#versions()
+#### imaginary#versions([ callback ])
 
 Retrieve imaginary, bimg and libvips versions
 

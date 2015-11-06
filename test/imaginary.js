@@ -117,4 +117,20 @@ suite('Imaginary', function () {
         })
       })
   })
+
+  test('#health', function (done) {
+    nock('http://imaginary')
+      .get('/health')
+      .query({ get: true })
+      .reply(200, { uptime: 123, goroutines: 12, cpus: 8 })
+
+    Imaginary('./test/fixtures/test.jpg')
+      .server('http://imaginary')
+      .health(function (err, res) {
+        expect(err).to.be.null
+        expect(res.statusCode).to.be.equal(200)
+        expect(res.body).to.be.a('string')
+        done(err)
+      })
+  })
 })
