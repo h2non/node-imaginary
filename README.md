@@ -68,7 +68,7 @@ var serverUrl = 'http://imaginary.company.net'
 
 imaginary('image.jpg')
   .server(serverUrl)
-  .crop({ widht: 200 })
+  .crop({ widht: 200, height: 200 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
   })
@@ -78,7 +78,7 @@ imaginary('image.jpg')
 Take an image from remote URL:
 ```js
 imaginary('http://server.com/image.jpg')
-  .crop({ width: 100 })
+  .crop({ width: 800, height: 600 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
   })
@@ -87,8 +87,8 @@ imaginary('http://server.com/image.jpg')
 
 Take an image as readable stream:
 ```js
-imaginary(fs.readFileStream('image.jpg'))
-  .crop({ width: 100 })
+imaginary(fs.createReadStream('image.jpg'))
+  .rotate({ rotate: 180 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
   })
@@ -120,7 +120,9 @@ Pass the image path, image URL or `ReadableStream` to the image file
 
 #### imaginary#imageUrl(url)
 
-Pass the image URL to process
+Pass the image URL to process. 
+
+**Note**: you must start your imaginary server with the `-enable-url-source` flag in order to use this feature.
 
 Balance between a pool of imaginary server URLs
 
