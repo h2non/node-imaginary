@@ -1,4 +1,4 @@
-# node-imaginary [![Build Status](https://api.travis-ci.org/h2non/node-imaginary.svg?branch=master)][travis] [![Dependency Status](https://gemnasium.com/h2non/node-imaginary.svg)][gemnasium] [![NPM version](https://badge.fury.io/js/imaginary.svg)][npm]
+# node-imaginary [![Build Status](https://api.travis-ci.org/h2non/node-imaginary.svg?branch=master)][travis] [![NPM version](https://badge.fury.io/js/imaginary.svg)][npm]
 
 Minimalist node.js/io.js CLI & programmatic stream capable interface for [imaginary](https://github.com/h2non/imaginary) server.
 
