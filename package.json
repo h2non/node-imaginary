@@ -41,11 +41,13 @@
     "test": "make test"
   },
   "dependencies": {
+    "babel-register": "^6.18.0",
     "commander": "^2.6.0",
     "merge": "^1.2.0",
     "request": "^2.65.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
     "chai": "^1.9.1",
     "mocha": "^1.21.3",
     "nock": "^2.17.0"
