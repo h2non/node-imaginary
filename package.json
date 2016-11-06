@@ -47,7 +47,6 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
-    "lodash": "^2.4.1",
     "mocha": "^1.21.3",
     "nock": "^2.17.0"
   }
