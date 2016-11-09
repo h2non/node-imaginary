@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var fs = require('fs')
-var path = require('path')
-var program = require('commander')
-var imaginary = require('../')
+const fs = require('fs')
+const path = require('path')
+const program = require('commander')
+const imaginary = require('../')
 
 program
   .version(imaginary.VERSION)
@@ -170,10 +170,10 @@ program.on('--help', function () {
 
 program.parse(process.argv)
 
-function command(action) {
+function command (action) {
   return function (image, flags) {
-    var output = flags.output || path.basename(image)
-    var opts = params(flags)
+    const output = flags.output || path.basename(image)
+    const opts = params(flags)
 
     imaginary(image, flags.server)[action](opts)
       .on('error', exitWithError)
@@ -181,8 +181,8 @@ function command(action) {
   }
 }
 
-function params(opts) {
-  var buf = {}
+function params (opts) {
+  const buf = {}
 
   Object.keys(opts).forEach(function (key) {
     if (omit(key)) {
@@ -193,15 +193,15 @@ function params(opts) {
   return buf
 }
 
-function omit(key) {
-  var omitFields = ['output', 'server', 'options', 'parent', 'commands']
+function omit (key) {
+  const omitFields = ['output', 'server', 'options', 'parent', 'commands']
 
-  return !~omitFields.indexOf(key)
-    && key.charAt(0) !== '_'
-    && key.length > 2
+  return !~omitFields.indexOf(key) &&
+    key.charAt(0) !== '_' &&
+    key.length > 2
 }
 
-function exitWithError(err) {
+function exitWithError (err) {
   console.error('Cannot process image:', err.message || err)
   process.exit(1)
 }
