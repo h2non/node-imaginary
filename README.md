@@ -1,4 +1,4 @@
-# node-imaginary [![Build Status](https://api.travis-ci.org/h2non/node-imaginary.svg?branch=master)][travis] [![NPM version](https://badge.fury.io/js/imaginary.svg)][npm] [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+# node-imaginary [![Build Status](https://api.travis-ci.org/h2non/node-imaginary.svg?branch=master)][travis] [![NPM version](https://badge.fury.io/js/imaginary.svg)][npm] [![Code Climate](https://codeclimate.com/github/h2non/node-imaginary/badges/gpa.svg)](https://codeclimate.com/github/h2non/node-imaginary) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
 Minimalist node.js/io.js CLI & programmatic stream capable interface for [imaginary](https://github.com/h2non/imaginary) server.
 

@@ -1,7 +1,6 @@
-var Imaginary = require('../')
-var expect = require('chai').expect
-var nock = require('nock')
-var fs = require('fs')
+const nock = require('nock')
+const expect = require('chai').expect
+const Imaginary = require('../')
 
 suite('Imaginary', function () {
   test('API', function () {

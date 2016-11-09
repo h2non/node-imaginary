@@ -44,6 +44,7 @@
   "dependencies": {
     "babel-register": "^6.18.0",
     "commander": "^2.6.0",
+    "object-assign": "^4.1.0",
     "request": "^2.65.0"
   },
   "devDependencies": {
