@@ -124,9 +124,13 @@ Define the API key required by the imaginary server (optional)
 
 Define the imaginary server URL
 
-#### imaginary#balance(urls)
+#### imaginary#balance(urls [, httpOptions])
 
 Define a pool of imaginary servers to balance load across them.
+
+#### imaginar#httpParams(options)
+
+Optionally declare [request HTTP client](https://github.com/request/request#requestoptions-callback) options to be used.
 
 #### imaginary#image(image)
 
