@@ -1,6 +1,6 @@
 {
   "name": "imaginary",
-  "description": "Minimalist CLI and programmatic stream based interface for imaginary server",
+  "description": "Minimalist CLI and programmatic stream based interface for imaginary",
   "version": "0.1.10",
   "license": "MIT",
   "repository": "h2non/node-imaginary",
