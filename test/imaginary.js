@@ -133,4 +133,15 @@ suite('Imaginary', function () {
         done(err)
       })
   })
+
+  test('httpParams', function (done) {
+    Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
+      .httpParams({ timeout: 5000 })
+      .crop({ width: 400 })
+      .on('response', function (res) {
+        expect(res.request.timeout).to.be.equal(5000)
+        done()
+      })
+  })
 })

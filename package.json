@@ -43,7 +43,7 @@
   "dependencies": {
     "babel-register": "^6.18.0",
     "commander": "^2.6.0",
-    "merge": "^1.2.0",
+    "es6-shim": "^0.35.1",
     "request": "^2.65.0"
   },
   "devDependencies": {
