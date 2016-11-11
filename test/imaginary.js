@@ -1,6 +1,6 @@
 const nock = require('nock')
 const expect = require('chai').expect
-const Imaginary = require('../')
+const Imaginary = require('..')
 
 suite('Imaginary', function () {
   test('API', function () {

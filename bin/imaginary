@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const program = require('commander')
-const imaginary = require('../')
+const imaginary = require('..')
 
 program
   .version(imaginary.VERSION)
