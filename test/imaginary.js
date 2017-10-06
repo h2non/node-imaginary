@@ -53,6 +53,44 @@ suite('Imaginary', function () {
       })
   })
 
+  test('#smartcrop', function (done) {
+    Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
+      .smartcrop({ width: 400 })
+      .on('response', function (res) {
+        var length = 0
+        res.on('data', function (data) {
+          length += data.length
+        })
+        res.on('end', function () {
+          expect(length > 3000).to.be.true
+          done()
+        })
+      })
+  })
+
+  test('#pipeline', function (done) {
+    Imaginary('./test/fixtures/test.jpg')
+      .server('http://localhost:8088')
+      .pipeline([{
+        operation: 'crop',
+        params: {
+          width: 400,
+          height: 300
+        }
+      }])
+      .on('response', function (res) {
+        var length = 0
+        res.on('data', function (data) {
+          length += data.length
+        })
+        res.on('end', function () {
+          expect(length > 3000).to.be.true
+          done()
+        })
+      })
+  })
+
   test('#resize', function (done) {
     Imaginary('./test/fixtures/test.jpg')
       .server('http://localhost:8088')
