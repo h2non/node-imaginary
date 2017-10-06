@@ -3,3 +3,6 @@ npm-debug.log
 .DS_Store
 .*.pid
 src
+*.webp
+*.jpg
+*.png

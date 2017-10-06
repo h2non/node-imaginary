@@ -1,0 +1,22 @@
+[
+  {
+    "operation": "crop",
+    "params": {
+      "width": 400,
+      "height": 360
+    }
+  },
+  {
+    "operation": "watermark",
+    "params": {
+      "text": "Hello World",
+      "textwidth": 200
+    }
+  },
+  {
+    "operation": "convert",
+    "params": {
+      "type": "webp"
+    }
+  }
+]

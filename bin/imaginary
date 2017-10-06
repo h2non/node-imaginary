@@ -10,8 +10,8 @@ program
 
 program
   .command('crop [image]')
-  .description('Crop any image to a given square thumbnail in pixels')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .description('Crop any image in order to fit the given width or height pixels')
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -22,9 +22,22 @@ program
   .action(command('crop'))
 
 program
+  .command('smartcrop [image]')
+  .description('Smart crop any image in order to fit the given width or height pixels. Requires imaginary v1.0.8+')
+  .option('-s, --server [url]', 'imaginary service URL', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
+  .option('-w, --width [pixels]', 'Image width resolution')
+  .option('-h, --height [pixels]', 'Image height resolution')
+  .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
+  .option('-c, --compression [level]', 'PNG compression level', 6)
+  .option('-t, --type [name]', 'Specify the image format to output. Possible values are: jpeg, png and webp')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(command('smartcrop'))
+
+program
   .command('resize [image]')
   .description('Resize the image to the given width or height in pixels')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -38,7 +51,7 @@ program
   .command('embed [image]')
   .description('Embed the image to the given width or height in pixels')
   .option('-k, --key [code]', 'Optional imaginary server API key')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -51,7 +64,7 @@ program
   .command('enlarge [image]')
   .description('Enlarge the image to the given width and height in pixels')
   .option('-k, --key [code]', 'Optional imaginary server API key')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-q, --quality [num]', 'JPEG image quality between 1-100', 80)
@@ -64,7 +77,7 @@ program
   .command('extract [image]')
   .description('Extract area from an image by top/left and width/height')
   .option('-k, --key [code]', 'Optional imaginary server API key')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
   .option('-t, --top [pixels]', 'Area top margin')
@@ -78,7 +91,7 @@ program
 program
   .command('rotate [image]')
   .description('Rotate the image by degrees')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -92,7 +105,7 @@ program
 program
   .command('flip [image]')
   .description('Flip an image')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -105,7 +118,7 @@ program
 program
   .command('flop [image]')
   .description('Flop an image')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -118,7 +131,7 @@ program
 program
   .command('zoom [image]')
   .description('Zoom the image to the given width or height in pixels')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -132,7 +145,7 @@ program
 program
   .command('watermark [image]')
   .description('Add a text watermark in the image')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-w, --width [pixels]', 'Image width resolution')
   .option('-h, --height [pixels]', 'Image height resolution')
@@ -151,9 +164,19 @@ program
   .action(command('watermark'))
 
 program
+  .command('pipeline [image]')
+  .description('Pipeline processing based on a JSON file transformation. Requires imaginary v1.0.8+')
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
+  .option('-k, --key [code]', 'Optional imaginary server API key')
+  .option('-j, --json [path]', 'Operations JSON file path to use. Optionally loaded from stdin.')
+  .option('-p, --operations [json]', 'Operations JSON string to use.')
+  .option('-o, --output [path]', 'Output image file path')
+  .action(pipeline)
+
+program
   .command('info [image]')
   .description('Retrieve image information as JSON')
-  .option('-s, --server [url]', 'imaginary customer ID', imaginary.URL)
+  .option('-s, --server [url]', 'imaginary server URL', imaginary.URL)
   .option('-k, --key [code]', 'Optional imaginary server API key')
   .option('-o, --output [path]', 'Output image info file (JSON)')
   .action(command('info'))
@@ -161,7 +184,9 @@ program
 program.on('--help', function () {
   console.log('  Examples:')
   console.log('')
-  console.log('    $ imaginary crop -w 200 -o out.jpg image.jpg')
+  console.log('    $ imaginary crop -w 300 -h 260 -o out.jpg image.jpg')
+  console.log('    $ imaginary smartcrop -w 300 -h 260 -o out.jpg image.jpg')
+  console.log('    $ imaginary pipeline -j operations.json -o out.jpg image.jpg')
   console.log('    $ imaginary resize -w 300 -o out.jpg http://server.net/image.jpg')
   console.log('    $ imaginary zoom -f 2 -w 300 -o out.jpg http://server.net/image.jpg')
   console.log('    $ imaginary watermark --text "copyright" -o out.jpg http://server.net/image.jpg')
@@ -179,6 +204,30 @@ function command (action) {
       .on('error', exitWithError)
       .pipe(fs.createWriteStream(output))
   }
+}
+
+function pipeline (image, flags) {
+  const output = flags.output || path.basename(image)
+  const opts = params(flags)
+
+  // Load JSON operations from disk
+  if (opts.json) {
+    opts.operations = JSON.parse(fs.readFileSync(opts.json))
+  }
+
+  // Parse operations if a string if given
+  if (opts.operations && typeof opts.operations === 'string') {
+    opts.operations = JSON.parse(opts.operations)
+  }
+
+  // Validate proper input object
+  if (!Array.isArray(opts.operations)) {
+    return exitWithError('operations must be a JSON list of objects')
+  }
+
+  imaginary(image, flags.server).pipeline(opts.operations, opts)
+    .on('error', exitWithError)
+    .pipe(fs.createWriteStream(output))
 }
 
 function params (opts) {

@@ -29,16 +29,18 @@ Usage: imaginary [options] [command]
 
 Commands:
 
-  crop [options] [image]       Crop any image to a given square thumbnail in pixels
+  crop [options] [image]       Crop any image in order to fit the given width or height pixels
+  smartcrop [options] [image]  Smart crop any image in order to fit the given width or height pixels. Requires imaginary v1.0.8+
   resize [options] [image]     Resize the image to the given width or height in pixels
   embed [options] [image]      Embed the image to the given width or height in pixels
-  extract [options] [image]    Extract area from an image by top/left and width/height
   enlarge [options] [image]    Enlarge the image to the given width and height in pixels
+  extract [options] [image]    Extract area from an image by top/left and width/height
   rotate [options] [image]     Rotate the image by degrees
   flip [options] [image]       Flip an image
   flop [options] [image]       Flop an image
   zoom [options] [image]       Zoom the image to the given width or height in pixels
   watermark [options] [image]  Add a text watermark in the image
+  pipeline [options] [image]   Pipeline processing based on a JSON file transformation. Requires imaginary v1.0.8+
   info [options] [image]       Retrieve image information as JSON
 
 Options:
@@ -48,7 +50,9 @@ Options:
 
 Examples:
 
-  $ imaginary crop -w 200 -o out.jpg image.jpg
+  $ imaginary crop -w 300 -h 260 -o out.jpg image.jpg
+  $ imaginary smartcrop -w 300 -h 260 -o out.jpg image.jpg
+  $ imaginary pipeline -j operations.json -o out.jpg image.jpg
   $ imaginary resize -w 300 -o out.jpg http://server.net/image.jpg
   $ imaginary zoom -f 2 -w 300 -o out.jpg http://server.net/image.jpg
   $ imaginary watermark --text "copyright" -o out.jpg http://server.net/image.jpg
@@ -116,27 +120,27 @@ See the full list of supported query params [here](https://github.com/h2non/imag
 Take a look to each specific endpoint to see which specific params are supported or not.
 Image measures are always in pixels, unless otherwise indicated.
 
-#### imaginary#key(key)
+#### imaginary#key(key) -> `this`
 
-Define the API key required by the imaginary server (optional)
+Define the API key required by the imaginary server (optional).
 
-#### imaginary#server(url)
+#### imaginary#server(url [, httpOptions]) -> `this`
 
-Define the imaginary server URL
+Define the imaginary server URL.
 
-#### imaginary#balance(urls [, httpOptions])
+#### imaginary#balance(urls [, httpOptions]) -> `this`
 
-Define a pool of imaginary servers to balance load across them.
+Define a list of imaginary server URLs to balance load.
 
-#### imaginar#httpParams(options)
+#### imaginary#httpParams(options) -> `this`
 
 Optionally declare [request HTTP client](https://github.com/request/request#requestoptions-callback) options to be used.
 
-#### imaginary#image(image)
+#### imaginary#image(image) -> `this`
 
 Pass the image path, image URL or `ReadableStream` to the image file
 
-#### imaginary#imageUrl(url)
+#### imaginary#imageUrl(url) -> `this`
 
 Pass the image URL to process.
 
@@ -144,61 +148,86 @@ Pass the image URL to process.
 
 Balance between a pool of imaginary server URLs
 
-#### imaginary#params(params, [ callback ])
+#### imaginary#params(params, [ callback ]) -> `this`
 
-#### imaginary#crop(params, [ callback ])
+Defines shared global URL query params used across `imaginary` HTTP API calls.
 
-Crop an image to a given square thumbnail in pixels.
+#### imaginary#crop(params, [ callback ]) -> `Promise`
 
-#### imaginary#resize(params, [ callback ])
+Crop an image in order to fit the given `width`, `height` or both.
 
-Resize an image by width, height or both
+#### imaginary#smartcrop(params, [ callback ]) -> `Promise`
 
-#### imaginary#enlarge(params, [ callback ])
+**Note**: requires `imaginary` v1.0.8+.
+
+Smart crop an image in order to fit the given `width`, `height` or both.
+
+Uses built-in smart cropping algorithm in `imaginary`.
+
+#### imaginary#resize(params, [ callback ]) -> `Promise`
+
+Resize an image by width, height or both.
+
+#### imaginary#enlarge(params, [ callback ]) -> `Promise`
 
 Enlarge an image by width and/or height
 
-#### imaginary#extract(params, [ callback ])
+#### imaginary#extract(params, [ callback ]) -> `Promise`
 
 Extract image area by top/left and width/height pixels
 
-#### imaginary#expand(params, [ callback ])
+#### imaginary#expand(params, [ callback ]) -> `Promise`
 
 Resize any image to a given height in pixels.
 
-#### imaginary#zoom(params, [ callback ])
+#### imaginary#zoom(params, [ callback ]) -> `Promise`
 
 Zoom an image by the given height in pixels.
 
-#### imaginary#rotate(params, [ callback ])
+#### imaginary#rotate(params, [ callback ]) -> `Promise`
 
 Rotate an image to a given degrees (must be multiple of 90)
 
-#### imaginary#flip(params, [ callback ])
+#### imaginary#flip(params, [ callback ]) -> `Promise`
 
 Flip an image
 
-#### imaginary#flop(params, [ callback ])
+#### imaginary#flop(params, [ callback ]) -> `Promise`
 
 Flop an image
 
-#### imaginary#watermark(params, [ callback ])
+#### imaginary#watermark(params, [ callback ]) -> `Promise`
 
 Add a watermark to an image
 
-#### imaginary#thumbnail(params, [ callback ])
+#### imaginary#thumbnail(params, [ callback ]) -> `Promise`
 
 Thumbnail an image with a given width or height
 
-#### imaginary#info([ callback ])
+#### imaginary#pipeline(operations, [ params, callback ]) -> `Promise`
+
+**Note**: requires `imaginary` v1.0.8+.
+
+Pipeline processing a given image performing multiple independent image transformations
+as sort of map-reduce pattern in serie.
+
+You can see a programmatic usage example [here](examples/pipeline.js).
+
+For an example JSON of pipeline operations, see [examples/operations.json](examples/operations.json)
+
+##### Required params
+
+- **operations** `json|array` - List of operations to run. See [imaginary documentation]() for further details.
+
+#### imaginary#info([ callback ]) -> `Promise`
 
 Get the metadata info of the image as JSON
 
-#### imaginary#health([ callback ])
+#### imaginary#health([ callback ]) -> `Promise`
 
 Retrieve server health status
 
-#### imaginary#versions([ callback ])
+#### imaginary#versions([ callback ]) -> `Promise`
 
 Retrieve imaginary, bimg and libvips versions
 
