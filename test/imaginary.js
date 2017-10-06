@@ -1,3 +1,4 @@
+const path = require('path')
 const nock = require('nock')
 const expect = require('chai').expect
 const Imaginary = require('..')
@@ -13,13 +14,13 @@ suite('Imaginary', function () {
 
   nock('http://server.com')
     .get('/image.jpg')
-    .replyWithFile(200, __dirname + '/fixtures/test.jpg')
+    .replyWithFile(200, path.join(__dirname, '/fixtures/test.jpg'))
 
   nock('http://localhost:8088')
     .persist()
     .filteringPath(function (path) { return '/' })
     .post('/')
-    .replyWithFile(200, __dirname + '/fixtures/test.jpg')
+    .replyWithFile(200, path.join(__dirname, '/fixtures/test.jpg'))
 
   test('remove image', function (done) {
     Imaginary('http://server.com/image.jpg')
