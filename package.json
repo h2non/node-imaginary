@@ -35,7 +35,7 @@
     "imaginary": "./bin/imaginary"
   },
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 4"
   },
   "scripts": {
     "lint": "standard",
