@@ -39,6 +39,7 @@
   },
   "scripts": {
     "lint": "standard",
+    "prepublish": "make test && make compile",
     "test": "make test"
   },
   "dependencies": {
