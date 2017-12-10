@@ -1,7 +1,7 @@
 {
   "name": "imaginary",
   "description": "Minimalist CLI and programmatic stream based interface for imaginary",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "license": "MIT",
   "repository": "h2non/node-imaginary",
   "author": "Tomas Aparicio",
@@ -29,7 +29,7 @@
     "watermark"
   ],
   "directories": {
-    "src": "./src"
+    "lib": "./src"
   },
   "bin": {
     "imaginary": "./bin/imaginary"
