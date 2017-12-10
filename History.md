@@ -1,4 +1,9 @@
 
+v0.1.16 / 2017-12-10
+====================
+
+  * fix(package): use lib default folder without transpiled code
+
 v0.1.15 / 2017-12-10
 ====================
 
