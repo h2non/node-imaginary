@@ -72,7 +72,7 @@ var serverUrl = 'http://imaginary.company.net'
 
 imaginary('image.jpg')
   .server(serverUrl)
-  .crop({ widht: 200, height: 200 })
+  .crop({ width: 200, height: 200 })
   .on('error', function (err) {
     console.error('Cannot resize the image:', err)
   })
